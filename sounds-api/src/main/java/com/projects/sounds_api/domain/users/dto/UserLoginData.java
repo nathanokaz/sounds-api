@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 
 public record UserLoginData(
 
-        @NotBlank
+        @NotBlank(message = "invalid username")
         String username,
-        @NotBlank
+        @NotBlank(message = "invalid password")
         String password) {
 
 }

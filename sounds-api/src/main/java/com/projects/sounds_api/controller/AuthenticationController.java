@@ -33,7 +33,7 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid UserLoginData data) {
+    public ResponseEntity<TokenDetails> login(@RequestBody @Valid UserLoginData data) {
         var user = new UsernamePasswordAuthenticationToken(data.username(), data.password());
         var auth = authenticationManager.authenticate(user);
         var token = tokenService.generateToken((User) auth.getPrincipal());

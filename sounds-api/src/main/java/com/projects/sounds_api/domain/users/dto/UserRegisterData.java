@@ -5,11 +5,11 @@ import jakarta.validation.constraints.NotNull;
 
 public record UserRegisterData(
 
-        @NotBlank
+        @NotBlank(message = "invalid username")
         String username,
-        @NotBlank
+        @NotBlank(message = "invalid password")
         String password,
-        @NotNull
+        @NotNull(message = "invalid role")
         UserRoles role) {
 
 }
