@@ -7,6 +7,7 @@ import com.projects.sounds_api.domain.users.dto.UserRegisterDetails;
 import com.projects.sounds_api.domain.users.repository.UserRepository;
 import com.projects.sounds_api.infra.security.dto.TokenDetails;
 import com.projects.sounds_api.infra.security.services.TokenService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
+    @Transactional
+    //apenas para fins de simulação
     public ResponseEntity<UserRegisterDetails> register(@RequestBody @Valid UserRegisterData data, UriComponentsBuilder uriComponentsBuilder) {
         if (userRepository.findByUsername(data.username()) != null) {
             return ResponseEntity.badRequest().build();

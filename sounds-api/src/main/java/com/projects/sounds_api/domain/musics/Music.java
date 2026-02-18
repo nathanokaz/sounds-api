@@ -1,5 +1,6 @@
 package com.projects.sounds_api.domain.musics;
 
+import com.projects.sounds_api.domain.musics.dto.EditMusicData;
 import com.projects.sounds_api.domain.musics.dto.MusicGender;
 import com.projects.sounds_api.domain.musics.dto.MusicRegisterData;
 import com.projects.sounds_api.domain.playlists.Playlist;
@@ -45,5 +46,20 @@ public class Music {
         this.artist = data.artist();
         this.gender = data.gender();
         this.durationInSeconds = data.durationInSeconds();
+    }
+
+    public void updateData(@Valid EditMusicData data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+        if (data.artist() != null) {
+            this.artist = data.artist();
+        }
+        if (data.gender() != null) {
+            this.gender = data.gender();
+        }
+        if (durationInSeconds != null) {
+            this.durationInSeconds = data.durationInSeconds();
+        }
     }
 }

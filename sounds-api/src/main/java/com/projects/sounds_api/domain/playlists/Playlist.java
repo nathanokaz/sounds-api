@@ -2,6 +2,7 @@ package com.projects.sounds_api.domain.playlists;
 
 import com.projects.sounds_api.domain.musics.Music;
 import com.projects.sounds_api.domain.playlists.dto.CreatePlaylistData;
+import com.projects.sounds_api.domain.playlists.dto.EditPlaylistData;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,14 @@ public class Playlist {
     public Playlist(@Valid CreatePlaylistData data) {
         this.name = data.name();
         this.creator = data.creator();
+    }
+
+    public void updateData(@Valid EditPlaylistData data) {
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+        if (data.creator() != null) {
+            this.creator = data.creator();
+        }
     }
 }
