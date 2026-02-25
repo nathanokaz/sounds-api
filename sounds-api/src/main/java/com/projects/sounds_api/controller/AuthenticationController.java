@@ -4,7 +4,7 @@ import com.projects.sounds_api.domain.user.dto.UserLoginData;
 import com.projects.sounds_api.domain.user.dto.UserRegisterData;
 import com.projects.sounds_api.domain.user.dto.UserRegisterDetails;
 import com.projects.sounds_api.infra.security.dto.TokenDetails;
-import com.projects.sounds_api.infra.security.services.AuthenticationService;
+import com.projects.sounds_api.infra.security.service.AuthenticationService;
 import jakarta.validation.Valid;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;

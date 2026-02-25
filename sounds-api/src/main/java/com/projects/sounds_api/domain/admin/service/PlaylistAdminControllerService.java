@@ -1,4 +1,4 @@
-package com.projects.sounds_api.domain.admin.services;
+package com.projects.sounds_api.domain.admin.service;
 
 import com.projects.sounds_api.domain.playlist.Playlist;
 import com.projects.sounds_api.domain.playlist.dto.EditPlaylistData;
@@ -45,7 +45,7 @@ public class PlaylistAdminControllerService {
         if (playlist.isPresent()) {
             return playlist.get();
         } else {
-            throw new EntityNotFoundException("some playlist ids are invalid");
+            throw new EntityNotFoundException("playlist id is invalid");
         }
     }
 

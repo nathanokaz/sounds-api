@@ -1,4 +1,4 @@
-package com.projects.sounds_api.infra.security.services;
+package com.projects.sounds_api.infra.security.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

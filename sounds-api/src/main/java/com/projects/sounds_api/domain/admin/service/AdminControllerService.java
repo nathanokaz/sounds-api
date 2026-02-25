@@ -1,4 +1,4 @@
-package com.projects.sounds_api.domain.admin.services;
+package com.projects.sounds_api.domain.admin.service;
 
 import com.projects.sounds_api.domain.admin.dto.AlterRoleData;
 import com.projects.sounds_api.domain.admin.dto.UserDetails;
@@ -50,7 +50,7 @@ public class AdminControllerService {
         if (user.isPresent()) {
             return user.get();
         } else {
-            throw new EntityNotFoundException("some user ids are invalid");
+            throw new EntityNotFoundException("user id is invalid");
         }
     }
 

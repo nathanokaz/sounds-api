@@ -1,4 +1,4 @@
-package com.projects.sounds_api.domain.music.services;
+package com.projects.sounds_api.domain.music.service;
 
 import com.projects.sounds_api.domain.music.Music;
 import com.projects.sounds_api.domain.music.dto.EditMusicData;

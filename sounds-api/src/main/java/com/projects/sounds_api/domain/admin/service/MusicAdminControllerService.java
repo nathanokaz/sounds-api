@@ -1,9 +1,11 @@
-package com.projects.sounds_api.domain.admin.services;
+package com.projects.sounds_api.domain.admin.service;
 
 import com.projects.sounds_api.domain.music.Music;
 import com.projects.sounds_api.domain.music.dto.EditMusicData;
 import com.projects.sounds_api.domain.music.dto.MusicDetails;
 import com.projects.sounds_api.domain.music.repository.MusicRepository;
+import com.projects.sounds_api.domain.playlist.Playlist;
+import com.projects.sounds_api.domain.playlist.repository.PlaylistRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,10 @@ public class MusicAdminControllerService {
 
     @Transactional
     public void deleteMusic(Long id) {
-        verifyIfExists(id);
+        var music = verifyIfExists(id);
+        for (Playlist playlist : music.getPlaylists()) {
+            playlist.getMusic().remove(music);
+        }
         musicRepository.deleteById(id);
     }
 
@@ -44,7 +49,7 @@ public class MusicAdminControllerService {
         if (music.isPresent()) {
             return music.get();
         } else {
-            throw new EntityNotFoundException("some music ids are invalid");
+            throw new EntityNotFoundException("music id is invalid");
         }
     }
 

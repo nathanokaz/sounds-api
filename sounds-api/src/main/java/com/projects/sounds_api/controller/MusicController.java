@@ -1,7 +1,7 @@
 package com.projects.sounds_api.controller;
 
 import com.projects.sounds_api.domain.music.dto.*;
-import com.projects.sounds_api.domain.music.services.MusicService;
+import com.projects.sounds_api.domain.music.service.MusicService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -29,7 +29,7 @@ public class MusicController {
     }
 
     @GetMapping("/show")
-    public ResponseEntity<Page<MusicDetails>> showMusics(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
+    public ResponseEntity<Page<MusicDetails>> showMusics(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
         var page = musicService.showMusics(pageable);
         return ResponseEntity.ok(page);
     }

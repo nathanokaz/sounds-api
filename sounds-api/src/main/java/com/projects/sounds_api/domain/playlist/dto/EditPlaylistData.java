@@ -10,7 +10,5 @@ public record EditPlaylistData(
         @Min(1)
         Long id,
         @NotBlank(message = "invalid name")
-        String name,
-        @NotBlank(message = "invalid creator")
-        String creator) {
+        String name) {
 }

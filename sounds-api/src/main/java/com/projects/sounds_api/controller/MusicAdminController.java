@@ -1,6 +1,6 @@
 package com.projects.sounds_api.controller;
 
-import com.projects.sounds_api.domain.admin.services.MusicAdminControllerService;
+import com.projects.sounds_api.domain.admin.service.MusicAdminControllerService;
 import com.projects.sounds_api.domain.music.dto.EditMusicData;
 import com.projects.sounds_api.domain.music.dto.MusicDetails;
 import com.projects.sounds_api.domain.music.dto.MusicUpdateDetails;
@@ -22,7 +22,7 @@ public class MusicAdminController {
     private MusicAdminControllerService musicAdminControllerService;
 
     @GetMapping("/show")
-    public ResponseEntity<Page<MusicDetails>> showMusics(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
+    public ResponseEntity<Page<MusicDetails>> showMusics(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
        var page = musicAdminControllerService.showMusics(pageable);
         return ResponseEntity.ok(page);
     }

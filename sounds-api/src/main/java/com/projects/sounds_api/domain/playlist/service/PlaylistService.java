@@ -79,7 +79,7 @@ public class PlaylistService {
             playlist.getMusic().remove(music.get());
             playlistRepository.save(playlist);
         } else {
-            throw new EntityNotFoundException("soma music ids are invalid");
+            throw new EntityNotFoundException("music id is invalid");
         }
     }
 

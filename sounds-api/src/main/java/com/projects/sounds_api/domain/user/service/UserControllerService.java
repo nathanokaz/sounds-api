@@ -1,4 +1,4 @@
-package com.projects.sounds_api.domain.user.services;
+package com.projects.sounds_api.domain.user.service;
 
 import com.projects.sounds_api.domain.user.User;
 import com.projects.sounds_api.domain.user.dto.UserEditAccount;
@@ -43,7 +43,7 @@ public class UserControllerService {
         if (user.isPresent()) {
             return user.get();
         } else {
-            throw new EntityNotFoundException("some user id are invalid");
+            throw new EntityNotFoundException("user id is invalid");
         }
     }
 

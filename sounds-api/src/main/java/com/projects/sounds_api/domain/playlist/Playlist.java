@@ -48,8 +48,5 @@ public class Playlist {
         if (data.name() != null) {
             this.name = data.name();
         }
-        if (data.creator() != null) {
-            this.creator = data.creator();
-        }
     }
 }

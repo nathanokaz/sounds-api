@@ -1,7 +1,7 @@
 package com.projects.sounds_api.infra.security.configuration;
 
 import com.projects.sounds_api.domain.user.repository.UserRepository;
-import com.projects.sounds_api.infra.security.services.TokenService;
+import com.projects.sounds_api.infra.security.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

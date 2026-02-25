@@ -2,7 +2,7 @@ package com.projects.sounds_api.controller;
 
 import com.projects.sounds_api.domain.admin.dto.UserDetails;
 import com.projects.sounds_api.domain.user.dto.UserEditAccount;
-import com.projects.sounds_api.domain.user.services.UserControllerService;
+import com.projects.sounds_api.domain.user.service.UserControllerService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

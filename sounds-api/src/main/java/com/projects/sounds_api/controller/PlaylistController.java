@@ -29,7 +29,7 @@ public class PlaylistController {
     }
 
     @GetMapping("/show")
-    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
+    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
         var page = playlistService.showPlaylists(pageable);
         return ResponseEntity.ok(page);
     }
@@ -46,7 +46,7 @@ public class PlaylistController {
         return ResponseEntity.ok(new PlaylistUpdateDetails(data));
     }
 
-    @PostMapping("/insert/musics")
+    @PostMapping("/insert/music")
     public ResponseEntity<?> insertMusicToPlaylist(@RequestBody @Valid InsertMusicData data) {
         playlistService.insertMusicToPlaylist(data);
         return ResponseEntity.ok().build();

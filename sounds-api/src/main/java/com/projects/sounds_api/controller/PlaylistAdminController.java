@@ -1,6 +1,6 @@
 package com.projects.sounds_api.controller;
 
-import com.projects.sounds_api.domain.admin.services.PlaylistAdminControllerService;
+import com.projects.sounds_api.domain.admin.service.PlaylistAdminControllerService;
 import com.projects.sounds_api.domain.playlist.dto.EditPlaylistData;
 import com.projects.sounds_api.domain.playlist.dto.PlaylistDetails;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -21,7 +21,7 @@ public class PlaylistAdminController {
     private PlaylistAdminControllerService playlistAdminControllerService;
 
     @GetMapping("/show")
-    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
+    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
         var page = playlistAdminControllerService.showPlaylists(pageable);
         return ResponseEntity.ok(page);
     }

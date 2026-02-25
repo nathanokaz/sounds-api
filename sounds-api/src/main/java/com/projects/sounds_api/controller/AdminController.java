@@ -2,7 +2,7 @@ package com.projects.sounds_api.controller;
 
 import com.projects.sounds_api.domain.admin.dto.AlterRoleData;
 import com.projects.sounds_api.domain.admin.dto.UserDetails;
-import com.projects.sounds_api.domain.admin.services.AdminControllerService;
+import com.projects.sounds_api.domain.admin.service.AdminControllerService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class AdminController {
     private AdminControllerService adminControllerService;
 
     @GetMapping("/show/users")
-    public ResponseEntity<Page<UserDetails>> showUsers(@PageableDefault(size = 5, sort = {"username"}) Pageable pageable) {
+    public ResponseEntity<Page<UserDetails>> showUsers(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
         var page = adminControllerService.showUsers(pageable);
         return ResponseEntity.ok(page);
     }

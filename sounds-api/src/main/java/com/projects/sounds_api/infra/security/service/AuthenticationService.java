@@ -1,4 +1,4 @@
-package com.projects.sounds_api.infra.security.services;
+package com.projects.sounds_api.infra.security.service;
 
 import com.projects.sounds_api.domain.user.User;
 import com.projects.sounds_api.domain.user.dto.UserLoginData;
