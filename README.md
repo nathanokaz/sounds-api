@@ -14,11 +14,11 @@ Sounds é uma API REST desenvolvida com Spring Boot que permite autenticação d
  - Controle administrativo (gerenciamento de usuários e conteúdos).
  - Documentação com Swagger.
  - Relacionamentos entre usuários, playlists e músicas no banco de dados.
- - Tratamento de exceções com códigos HTTP).
+ - Tratamento de exceções com códigos HTTP.
  - Autenticação com tokens JWT.
  - Senhas criptografadas com BCrypt.
 
- ## Controle de Acesso
+## Controle de Acesso
  - User: pode gerenciar suas próprias playlists e músicas. 
  - Admin: possui permissão para gerenciar usuários e conteúdos da plataforma.
  
@@ -34,9 +34,9 @@ Sounds é uma API REST desenvolvida com Spring Boot que permite autenticação d
 | GET    | /playlist/show  | Lista as playlists criadas  |
 | POST   | /playlist/insert/music  | Adiciona músicas a uma playlist  |
 
-Obs: Todos os endpoints (exceto login e registro) precisam de autenticação via token JWT.
+ > Observação: Todos os endpoints (exceto login e registro) precisam de autenticação via token JWT.
 
- > Outros endpoints estarão disponíveis na Documentação do Swagger em: http://localhost:8080/swagger-ui/index.html
+ > Outros endpoints, assim como exemplos de requisições, estão disponíveis na documentação do Swagger após iniciar a aplicação: http://localhost:8080/swagger-ui/index.html
 
 ## Tecnologias Utilizadas
 
@@ -50,14 +50,14 @@ Obs: Todos os endpoints (exceto login e registro) precisam de autenticação via
  - Bean Validation
  - Lombok
 
- ## Instalação e Uso
+## Instalação e Uso
 
  ```bash
-#Clonar o arquivo do repositório
+#Clonar o repositório
 git clone git@github.com:nathanokaz/sounds-api.git
  ```
 
-  - Crie um banco de dados MySQL local (ex: sounds_db).
+  - Crie um banco de dados MySQL local (ex: `CREATE DATABASE sounds_db;`).
   - Atualize o `application.properties` com a URL do banco de dados.
 
 Endpoints podem ser testados em: http://localhost:8080/swagger-ui/index.html ou utilize ferramentas como Insomnia para enviar requisições HTTP.
