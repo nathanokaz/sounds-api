@@ -14,6 +14,7 @@ Sounds é uma API REST desenvolvida com Spring Boot que permite autenticação d
  - Controle administrativo (gerenciamento de usuários e conteúdos).
  - Documentação com Swagger.
  - Relacionamentos entre usuários, playlists e músicas no banco de dados.
+ - Tratamento de exceções.
 
  ## Controle de Acesso
  - User: pode gerenciar suas próprias playlists e músicas. 
