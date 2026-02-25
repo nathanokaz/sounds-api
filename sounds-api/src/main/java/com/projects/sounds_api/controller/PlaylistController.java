@@ -1,9 +1,7 @@
 package com.projects.sounds_api.controller;
 
-import com.projects.sounds_api.domain.musics.repository.MusicRepository;
-import com.projects.sounds_api.domain.playlists.Playlist;
-import com.projects.sounds_api.domain.playlists.dto.*;
-import com.projects.sounds_api.domain.playlists.repository.PlaylistRepository;
+import com.projects.sounds_api.domain.playlist.dto.*;
+import com.projects.sounds_api.domain.playlist.service.PlaylistService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -21,99 +19,50 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class PlaylistController {
 
     @Autowired
-    private PlaylistRepository playlistRepository;
-
-    @Autowired
-    private MusicRepository musicRepository;
+    private PlaylistService playlistService;
 
     @PostMapping("/create")
-    @Transactional
     public ResponseEntity<PlaylistCreateDetails> createPlaylist(@RequestBody @Valid CreatePlaylistData data, UriComponentsBuilder uriComponentsBuilder) {
-        var playlist = new Playlist(data);
-        playlistRepository.save(playlist);
+        var playlist = playlistService.createPlaylist(data);
         var uri = uriComponentsBuilder.path("/playlist/create/{id}").buildAndExpand(playlist.getId()).toUri();
         return ResponseEntity.created(uri).body(new PlaylistCreateDetails(playlist));
     }
 
     @GetMapping("/show")
-    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"name"}) Pageable pageable) {
-        var page = playlistRepository.findAll(pageable).map(playlist -> new PlaylistDetails(playlist));
+    public ResponseEntity<Page<PlaylistDetails>> showPlaylists(@PageableDefault(size = 5, sort = {"id"}) Pageable pageable) {
+        var page = playlistService.showPlaylists(pageable);
         return ResponseEntity.ok(page);
     }
 
     @GetMapping("/show/{id}")
     public ResponseEntity<PlaylistDetails> showPlaylistsById(@PathVariable Long id) {
-        var playlistExists = playlistRepository.findById(id);
-        if (playlistExists.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            var playlist = playlistExists.get();
-            return ResponseEntity.ok(new PlaylistDetails(playlist));
-        }
+        var playlist = playlistService.showPlaylistById(id);
+        return ResponseEntity.ok(new PlaylistDetails(playlist));
     }
 
     @PutMapping("/edit")
-    @Transactional
     public ResponseEntity<PlaylistUpdateDetails> editPlaylist(@RequestBody @Valid EditPlaylistData data) {
-        var playlistExists = playlistRepository.findById(data.id());
-        if (playlistExists.isPresent()) {
-            var playlist = playlistExists.get();
-            playlist.updateData(data);
-            return ResponseEntity.ok(new PlaylistUpdateDetails(data));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        var playlist = playlistService.editPlaylistData(data);
+        return ResponseEntity.ok(new PlaylistUpdateDetails(data));
     }
 
     @PostMapping("/insert/musics")
-    @Transactional
     public ResponseEntity<?> insertMusicToPlaylist(@RequestBody @Valid InsertMusicData data) {
-        var playlistExists = playlistRepository.findById(data.id());
-        if (playlistExists.isEmpty()) {
-            return ResponseEntity.badRequest().body("the playlist id is invalid");
-        } else {
-            var playlist = playlistExists.get();
-            var musics = musicRepository.findAllById(data.musicId());
-            if (musics.size() != data.musicId().size()) {
-                return ResponseEntity.badRequest().body("some music id are invalid");
-            } else {
-                playlist.getMusics().addAll(musics);
-                playlistRepository.save(playlist);
-                return ResponseEntity.ok().build();
-            }
-        }
+        playlistService.insertMusicToPlaylist(data);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/delete/{id}")
-    @Transactional
     public ResponseEntity<?> deletePlaylist(@PathVariable Long id) {
-        var playlistExists = playlistRepository.findById(id);
-        if (playlistExists.isPresent()) {
-            playlistRepository.deleteById(id);
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        playlistService.deletePlaylist(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/delete/music")
     @Transactional
     public ResponseEntity<?> deleteMusicFromPlaylist(@RequestBody @Valid DeleteMusicFromPlaylistData data) {
-        var playlistExists = playlistRepository.findById(data.playlistId());
-        if (playlistExists.isPresent()) {
-            var musicExists = musicRepository.findById(data.musicId());
-            if (musicExists.isPresent()) {
-                var playlist = playlistExists.get();
-                var music = musicExists.get();
-                playlist.getMusics().remove(music);
-                playlistRepository.save(playlist);
-                return ResponseEntity.noContent().build();
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        playlistService.deleteMusicFromPlaylist(data);
+        return ResponseEntity.noContent().build();
     }
 
 }

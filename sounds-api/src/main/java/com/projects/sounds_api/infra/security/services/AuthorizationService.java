@@ -1,6 +1,6 @@
 package com.projects.sounds_api.infra.security.services;
 
-import com.projects.sounds_api.domain.users.repository.UserRepository;
+import com.projects.sounds_api.domain.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
