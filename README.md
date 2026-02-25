@@ -8,13 +8,15 @@ Sounds é uma API REST desenvolvida com Spring Boot que permite autenticação d
 
 ## Funcionalidades Principais
 
- - Cadastro e login de usuários com tokens JWT.
+ - Cadastro e login de usuários.
  - Registro e gerenciamento de músicas (representação textual, sem arquivos reais).
  - Criação e gerenciamento de playlists.
  - Controle administrativo (gerenciamento de usuários e conteúdos).
  - Documentação com Swagger.
  - Relacionamentos entre usuários, playlists e músicas no banco de dados.
- - Tratamento de exceções.
+ - Tratamento de exceções com códigos HTTP).
+ - Autenticação com tokens JWT.
+ - Senhas criptografadas com BCrypt.
 
  ## Controle de Acesso
  - User: pode gerenciar suas próprias playlists e músicas. 
